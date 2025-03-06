@@ -1,0 +1,4 @@
+# Example .env file used for dotenv package
+PORT=8001
+TOKEN_SECRET=0c60dc53fa966ea2f7d21e355c2120b78f7ba06e438287ad3d0e178c6fa7e2377de491d0e549dca94853f61a24d8b55f9b2753befa2916d30cb6eef67aac0aa9
+MODSECRET=vote4me

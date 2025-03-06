@@ -1,0 +1,26 @@
+{
+  "name": "una-vote",
+  "version": "1.0.0",
+  "description": "UNA faculty sentate vote",
+  "main": "index.js",
+  "dependencies": {
+    "bluebird": "^3.5.3",
+    "body-parser": "^1.18.3",
+    "connect-mongodb-session": "^2.1.1",
+    "express": "^4.16.4",
+    "express-session": "^1.15.6",
+    "image-size": "^0.6.3",
+    "mongodb": "^3.2.2",
+    "request": "^2.88.0",
+    "sharp": "^0.20.8",
+    "socket.io": "^2.2.0",
+    "socket.io-express-session": "^0.1.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jason Watson",
+  "license": "MIT",
+  "private": true
+}

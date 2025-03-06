@@ -1,0 +1,43 @@
+#!/bin/bash
+
+########################################################
+# 4/1/2019 - config environment script (devenv)        #
+#   script to initalize env for nodejs/mongo dev       #
+#   assumes: use of sudo                               #
+#      add: <user> ALL=NOPASSWD: /bin/systemctl        #
+#           using sudo visudo to not use passwd        #
+#                                                      #
+#   usage - devenv <stop | start>                      #
+#                                                      #
+# author - jwatson5@una.edu                            #
+########################################################
+
+# check for 2 parameters and echo usage if not structure properly
+if [[ ("$1" == 'stop' || "$1" == 'start') ]]
+then
+  echo "configuring dev env..."
+  #exit 0
+else
+  echo "USAGE: devenv <stop | start>"
+  exit 0
+fi
+
+if [[ ("$1" == 'start') ]]
+then
+  echo "starting dev env..."
+  sudo systemctl start mongod
+  sudo systemctl start nginx
+  sleep 2
+  #pm2 start ecosystem.config.js
+  #ACTIVE=`sudo systemctl is-active mongod`
+  #echo $ACTIVE
+else
+  echo "stopping dev env..."
+  #pm2 stop all
+  #pm2 kill
+  sleep 2
+  sudo systemctl stop nginx
+  sudo systemctl stop mongod
+fi
+echo "finished."
+exit 0

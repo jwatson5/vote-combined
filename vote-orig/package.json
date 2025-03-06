@@ -1,0 +1,25 @@
+{
+  "name": "una-vote",
+  "version": "1.0.0",
+  "description": "UNA faculty sentate vote",
+  "main": "index.js",
+  "dependencies": {
+    "axios": "^1.7.8",
+    "connect-redis": "^8.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "express-session": "^1.18.1",
+    "jsonwebtoken": "^9.0.2",
+    "mongodb": "^6.11.0",
+    "redis": "^4.7.0",
+    "redis-lock": "^1.0.0",
+    "sharp": "^0.33.5"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jason Watson",
+  "license": "MIT",
+  "private": true
+}

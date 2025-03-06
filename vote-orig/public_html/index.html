@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <title>UNA Faculty Senate Vote</title>
+
+  <link href="css/general.css" rel="stylesheet">
+  <link href="css/containers.css" rel="stylesheet">
+  <!--<link href="lib/css/jquery.modal.min.css" rel="stylesheet">
+  <link href="lib/css/jquery.autocomplete.css" rel="stylesheet">-->
+
+</head>
+
+<body>
+  <div id="top-bar" class="flex flex-vcenter flex-hspread" style="display: flex;">
+    <div id="top-bar-center" class="flex flex-vcenter">
+      <p class="margin-left-md font-md font-white bg-blue padding-sm radius"></p>
+    </div>
+    <a id="btn-logout-init" class="btn-link font-md margin-right-md">Logout</a>
+  </div>
+
+  <div id="center">
+    <div id="new-pane" class="flex flex-column flex-vcenter flex-hcenter full-width full-height" style="display: flex;">
+      <h1 class="font-title font-dkgray font-center">University of North Alabama</h1>
+      <h2 class="font-title font-dkgray font-center">Faculty Senate Voting</h2>
+      <h2 id="new-pane-message" class="font-title margin-top-md padding-sm bg-blue font-white font-center"></h2>
+    </div>
+    <div id="ident-form" class="flex flex-column flex-vcenter margin-top-lg full-width" style="display: flex;">
+      <h2 class="font-title font-center font-xlg font-dkgray margin-top-md margin-bot-md">Session is in
+        progress...</h2>
+      <div id="ident-form" class="flex flex-column bg-white border-blue radius">
+        <h2 class="font-title font-white bg-blue font-center border-bot-blue padding-top-sm padding-bot-sm">
+          Login</h2>
+        <div class="form-cont flex flex-column">
+          <div class="flex flex-column margin-top-md">
+            <input id="inp-senator" class="padding-sm bg-transparent font-mdlg font-dkgray" type="text"
+              name="inp_senator" placeholder="senator name" />
+          </div>
+          <div class="flex flex-column margin-top-md">
+            <input id="inp-key" class="padding-sm bg-transparent font-mdlg font-dkgray" type="text" name="inp_senator"
+              placeholder="session key" />
+          </div>
+          <div class="flex flex-hcenter margin-top-md">
+            <a id="btn-login" class="btn-link font-md">Login</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ori class="flex flex-column flex-vcenter margin-auto full-width full-height margin-top-xxlg" -->
+    <div id="vote-pane" class="flex flex-column flex-vcenter bg-white margin-top-xxlg margin-left-md margin-right-md"
+      style="display: flex;">
+      <!-- ori class="full-width max-width min-width font-title font-center bg-lightgray margin-bot-md" -->
+      <div id="title" class="max-width font-title font-center bg-lightgray margin-bot-md padding-sm"
+        style="display: flex;">
+        <h2 class="font-title padding-sm font-xlg font-dkgray margin-top-md margin-bot-md"></h2>
+      </div>
+      <div id="candidate-list" class="max-width flex flex-column" style="display: flex;">
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-logout" class="modal">
+    <div class="flex flex-column flex-vcenter">
+      <div class="full-width bg-blue radius-md-top-left radius-md-top-right font-white">
+        <h3 class="font-title margin-left-md">Logout</h3>
+      </div>
+      <div class="flex flex-hcenter md-full-width margin-top-md margin-bot-md">
+        <a class="btn-logout btn-link font-md margin-right-mdlg">Yes</a>
+        <a class="btn-logout btn-link font-md">No</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-dup-voter" class="modal">
+    <div class="flex flex-column flex-vcenter">
+      <div class="full-width bg-blue radius-md-top-left radius-md-top-right font-white">
+        <h3 class="font-title margin-left-md">Duplicate login detected</h3>
+      </div>
+      <div class="flex flex-column flex-vcenter md-full-width margin-top-md margin-bot-md">
+        <p class="font-md font-dkgray margin-bot-md">Another device has logged on as this voter. Please login
+          again.</p>
+        <a class="btn-modal-ok btn-link font-md margin-right-mdlg">Ok</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/global.js"></script>
+  <script src="js/authTest.js"></script>
+  <script src="js/loader.js"></script>
+</body>
+
+</html>

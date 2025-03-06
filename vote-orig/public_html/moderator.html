@@ -1,0 +1,190 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <title>Moderator - UNA Vote</title>
+
+  <link href="css/general.css" rel="stylesheet">
+  <link href="css/containers.css" rel="stylesheet">
+  <link href="lib/css/jquery.modal.min.css" rel="stylesheet">
+  <link href="lib/css/jquery.autocomplete.css" rel="stylesheet">
+
+</head>
+
+<body>
+  <div id="top-bar" class="flex flex-vtop flex-hspread" style="display: none;">
+    <div id="top-bar-left" class="flex flex-vcenter margin-left-md">
+      <p style="display: none;" id="num-senators" class="font-md font-white bg-blue radius font-bold margin-right-sm padding-txt-buf"></p>
+      <p style="display: none;" class="font-md font-dkgray">Connected</p>
+    </div>
+    <div id="top-bar-center" class="flex flex-column flex-vcenter">
+      <p class="font-md font-italic font-dkgray"></p>
+      <div class="flex">
+        <a id="btn-start-vote" class="btn-link font-mdsm padding-xsm margin-top-sm" style="display: none;">Start
+          Vote</a>
+        <a id="btn-stop-vote" class="btn-link font-mdsm padding-xsm margin-top-sm" style="display: none;">End Voting</a>
+        <a id="btn-revote" class="btn-link font-mdsm padding-xsm margin-top-sm margin-right-md"
+          style="display: none;">Revote</a>
+        <a id="btn-accept-vote" class="btn-link font-mdsm padding-xsm margin-top-sm" style="display: none;">Accept
+          Results</a>
+        <p id="stat-vote-done"
+          class="font-white font-mdsm font-bold bg-green font-no-select padding-sm margin-top-sm radius"
+          style="display: none;">Vote Complete</p>
+        <a id="btn-go-mgr" class="btn-link font-mdsm padding-xsm margin-top-sm margin-left-md"
+          style="display: none;">Close
+          Vote</a>
+      </div>
+    </div>
+    <div id="top-bar-right" class="flex flex-vcenter">
+      <a id="btn-config" class="btn-link icon config" style="display: none;"></a>
+      <div class="flex flex-column flex-vright">
+        <a id="btn-logout-init" class="btn-link font-md">Logout</a>
+        <p class="font-sm font-center font-italic font-dkgray radius padding-xsm" style="display: none;">All changes
+          saved</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div id="vote-control" class="flex flex-column flex-vcenter border-blue radius" style="display: none;">
+  <h2 class="font-title full-width font-white bg-blue font-center border-bot-blue padding-top-sm padding-bot-sm">
+   Control</h2>
+  <a id="btn-acclam"
+   class="btn-link font-md margin-sm">Acclamation</a>
+ </div> -->
+
+  <div id="center">
+    <div id="ident-pane" class="flex flex-column flex-vcenter margin-top-lg full-width" style="display: none;">
+      <div id="ident-form" class="flex flex-column bg-white border-blue radius">
+        <h2 class="font-title font-white bg-blue font-center border-bot-blue padding-top-sm padding-bot-sm">Moderator
+          Login</h2>
+        <div class="form-cont flex flex-column">
+          <div class="flex flex-column margin-top-md">
+            <label for="mod-pass" class="font-md font-dkgray margin-left-md">Password</label>
+            <input id="mod-pass" class="padding-sm bg-transparent font-mdlg" type="password" />
+          </div>
+          <div class="flex flex-column margin-top-md">
+            <label for="inp-key" class="font-md font-dkgray margin-left-md">Key name</label>
+            <input id="inp-key" class="padding-sm bg-transparent font-mdlg" type="text" />
+          </div>
+          <div class="flex flex-hcenter margin-top-md">
+            <a id="btn-login" class="btn-link font-md">Login</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="vote-pane" class="flex flex-vcenter full-width" style="display: none;">
+      <div id="vote-manager" class="flex flex-column bg-white border-blue radius margin-left-md margin-right-md"
+        style="display: none;">
+        <h2 class="font-title font-white bg-blue font-center border-bot-blue padding-top-sm padding-bot-sm">Vote Manager
+        </h2>
+        <div id="vote-create" class="flex flex-column flex-vcenter margin-left-md margin-right-md margin-top-md">
+          <!-- <h3
+      class="font-title font-no-bold font-center font-md font-dkgray full-width padding-bot-sm border-bot-dkgray margin-top-none margin-bot-none margin-left-md margin-right-md"
+      style="display: none;">Create Vote</h3> -->
+          <div class="flex flex-hcenter margin-left-md margin-right-md margin-top-md">
+            <a id="btn-new-motion" class="btn-link font-md margin-right-md">New Motion</a>
+            <a id="btn-new-position" class="btn-link font-md">New Position</a>
+          </div>
+        </div>
+        <div id="vote-hist" class="flex flex-column flex-vcenter margin-left-md margin-right-md margin-top-md">
+          <h3
+            class="font-title font-no-bold font-center font-md font-dkgray full-width padding-bot-sm border-bot-dkgray margin-none">
+            Vote History</h3>
+        </div>
+      </div>
+      <div id="vote-new" class="flex flex-column bg-white border-blue radius margin-left-md margin-right-md"
+        style="display: none;">
+        <h2 class="font-title font-white bg-blue font-center border-bot-blue padding-top-sm padding-bot-sm"></h2>
+        <div class="form-cont flex flex-column">
+          <div class="flex flex-column margin-top-md">
+            <label for="inp-vote-id" class="font-md font-dkgray margin-left-md">Name/ID</label>
+            <input id="inp-vote-id" class="padding-sm bg-transparent font-mdlg" type="text" name="inp_vote_id" />
+          </div>
+          <div class="flex flex-column margin-top-md">
+            <label for="inp-vote-title" class="font-md font-dkgray margin-left-md">Description</label>
+            <textarea id="inp-vote-title" class="font-default font-md font-center lg-height no-resize"></textarea>
+          </div>
+          <div class="flex flex-hcenter margin-top-mdlg">
+            <a id="btn-create-vote" class="btn-link font-md margin-right-md">Create Vote</a>
+            <a id="btn-create-cancel" class="btn-link font-md">Cancel</a>
+          </div>
+        </div>
+      </div>
+      <div id="vote-list" class="flex flex-column flex-vcenter bg-white margin-left-md margin-right-md"
+        style="display: none;">
+        <div id="mod-title" class="font-title font-center margin-bot-md">
+          <div id="vote-title" class="flex flex-vcenter">
+            <h2 class="font-title font-xlg font-dkgray margin-bot-md margin-left-mdlg margin-right-md"></h2>
+            <a id="btn-edit-title" class="btn-link icon edit"></a>
+            <textarea class="font-default font-mdlg font-center lg-height no-resize" style="display: none;"></textarea>
+            <a id="btn-save-title" class="btn-link icon save margin-left-md" style="display: none;"></a>
+          </div>
+        </div>
+        <!-- class="full-width max-width min-width flex flex-column" -->
+        <div id="mod-candidates" class="max-width flex flex-column">
+        </div>
+      </div>
+      <div id="vote-info" class="flex flex-column flex-vcenter margin-right-md margin-left-md" style="display: none;">
+        <h2 class="font-title font-center font-xlg font-dkgray margin-bot-mdlg margin-left-mdlg margin-right-mdlg"></h2>
+        <div class="flex border-blue radius-lg padding-sm">
+          <div id="vote-info-box" class="flex flex-column flex-vcenter bg-blue padding-md radius-lg">
+            <p class="full-width font-center no-margin padding-bot-md bg-blue font-white font-xxlg border-bot-white">
+              Voting</p>
+            <!-- <div class="flex flex-hcenter bg-blue font-white font-lg margin-top-md"> -->
+            <div class="flex flex-vcenter bg-blue font-white font-lg margin-top-md margin-right-mdlg margin-left-mdlg">
+              <p class="margin-right-md font-center">Votes Cast</p>
+              <p class="info-votenum font-bold">0</p>
+            </div>
+            <!-- <div class="flex flex-column flex-vcenter">
+              <p class="font-center">Total Percent</p>
+              <p class="info-voteper font-bold">- %</p>
+            </div> -->
+            <!-- </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-logout" class="modal">
+    <div id="login-container" class="flex flex-column flex-vcenter">
+      <div class="full-width bg-blue radius-md-top-left radius-md-top-right font-white">
+        <h3 class="font-title margin-left-md">Logout</h3>
+      </div>
+      <div class="flex flex-hcenter md-full-width margin-top-md margin-bot-md">
+        <a class="btn-logout btn-link font-mdlg margin-right-mdlg">Yes</a>
+        <a class="btn-logout btn-link font-mdlg">No</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-config" class="modal">
+    <div class="flex flex-column flex-vcenter">
+      <div class="full-width bg-blue radius-md-top-left radius-md-top-right font-white">
+        <h3 class="font-title margin-left-md">Configuration</h3>
+      </div>
+      <div class="flex flex-column flex-vcenter border-blue padding-md md-full-width margin-top-md">
+        <a id="btn-config-update-faculty" class="btn-link font-mdlg"></a>
+        <div id="progress-update-faculty" class="flex flex-vcenter margin-top-sm" style="display: none;">
+          <div style="width: 0;"></div>
+        </div>
+      </div>
+      <div class="flex flex-hcenter md-full-width margin-top-md margin-bot-md">
+        <a id="btn-config-close" class="btn-link font-mdlg">Close</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="lib/js/jquery-latest.js"></script>
+  <script src="lib/js/jquery.autocomplete.js"></script>
+  <script src="lib/js/jquery.animate-colors-min.js"></script>
+  <script src="lib/js/jquery.modal.min.js"></script>
+  <script src="lib/js/Chart.bundle.min.js"></script>
+  <!--<script src="socket.io/socket.io.js"></script>-->
+  <script src="js/mod/init.js"></script>
+</body>
+
+</html>
