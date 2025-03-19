@@ -1,0 +1,16 @@
+Non-Authenticated
+-> Login
+-> Moderator Login
+
+
+Authenticated
+Senator (Voting)
+-> Waiting for a vote
+-> Voting (options unvote,change,vote)
+
+
+Moderator
+-> Dashboard (list of saved votes, toolbar at the top for utilities)
+  -> Create/Edit Vote (Position, Motions)
+    -> Vote in progess (chart)
+      -> Vote Finished (final chart)
